@@ -1,7 +1,7 @@
 ---
-title: "Tuesday - Jumpstart 2025"
-author: "Hannah Overbye-Thompson"
-date: "2025-08-19"
+title: "Tuesday - Jumpstart 2026"
+author: "Kylie Falcione"
+date: "2026-08-15"
 output: html_document
 ---
 
@@ -61,6 +61,13 @@ R works like a powerful calculator, but it can also store results for later use.
 120 / 4     # Division - calculating averages
 3^2         # Exponentiation - calculating effect sizes
 ```
+```{r}
+#Your turn, calculate the following things
+#Jenny recruited 1927 participants who responded to a survey and Tom recruited an additional 807 participants. How many total participants were recruited by Jenny and Tom?
+
+#Only 1/4 of Jenny and Tom's participants completed the full survey. How many participants completed the full survey?
+
+```
 
 ## Storing Results in Objects
 
@@ -74,6 +81,7 @@ actual_responses <- total_participants * response_rate
 
 print(actual_responses)
 ```
+
 
 ## Object-Oriented Programming in R
 
@@ -114,6 +122,21 @@ social_media_posts > 10     # Greater than: TRUE
 media_usage_hours < 3       # Less than: FALSE
 social_media_posts >= 12    # Greater than or equal: TRUE
 media_usage_hours <= 4      # Less than or equal: FALSE
+```
+```{r}
+#Your turn, calculate the following things
+#Jenny recruited 927 participants who responded to a survey and Tom recruited an additional 807 participants. How many total participants were recruited by Jenny and Tom?
+#Create a variable called total_participants
+
+#Only 1/3 of Jenny and Tom's participants completed the full survey. How many participants completed the full survey?
+actual_responses <- total_participants/3
+
+print(actual_responses)
+
+#Of the 'actual_responses', only 50 people completed the free response protion of the study. What percentage of people completed the free response?
+#completed_fr <- 
+
+print(completed_fr)
 ```
 
 ## Logical Operators
