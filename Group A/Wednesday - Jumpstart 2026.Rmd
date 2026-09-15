@@ -1,7 +1,7 @@
 ---
-title: "Wednesday - Jumpstart 2025: Statistics in R"
-author: "Hannah Overbye-Thompson"
-date: "2025-08-19"
+title: "Wednesday - Jumpstart 2026: Statistics in R"
+author: "Kylie Falcione"
+date: "2026-08-16"
 output: html_document
 ---
 
@@ -15,7 +15,7 @@ library(broom)  # For tidy statistical output
 options(scipen = 999)
 ```
 
-# Welcome Back to Jumpstart 2025!
+# Welcome Back to Jumpstart 2026!
 
 Today we'll learn how to conduct statistical analyses in R using your communication research data. We'll cover the most common statistical tests used in communication.
 
