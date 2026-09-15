@@ -1,7 +1,7 @@
 ---
-title: "Thursday - Jumpstart 2025: Data Visualization"
-author: "Hannah Overbye-Thompson"
-date: "2025-08-19"
+title: "Thursday - Jumpstart 2026: Data Visualization"
+author: "Kylie Falcione"
+date: "2026-08-19"
 output: html_document
 ---
 
