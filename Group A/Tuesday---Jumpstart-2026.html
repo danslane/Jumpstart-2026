@@ -424,21 +424,29 @@ later use.</p>
 <pre><code>## [1] 30</code></pre>
 <pre class="r"><code>3^2         # Exponentiation - calculating effect sizes</code></pre>
 <pre><code>## [1] 9</code></pre>
+<pre class="r"><code>5+78</code></pre>
+<pre><code>## [1] 83</code></pre>
 <pre class="r"><code>#Your turn, calculate the following things
 #Jenny recruited 1927 participants who responded to a survey and Tom recruited an additional 807 participants. How many total participants were recruited by Jenny and Tom?
-
-#Only 1/4 of Jenny and Tom&#39;s participants completed the full survey. How many participants completed the full survey?</code></pre>
+1927 + 807</code></pre>
+<pre><code>## [1] 2734</code></pre>
+<pre class="r"><code>#Only 1/4 of Jenny and Tom&#39;s participants completed the full survey. How many participants completed the full survey?
+2734 / 4</code></pre>
+<pre><code>## [1] 683.5</code></pre>
 </div>
 <div id="storing-results-in-objects" class="section level2">
 <h2>Storing Results in Objects</h2>
 <p>One of R’s most powerful features is storing results in objects:</p>
 <pre class="r"><code># Store a value for later use
+x = 3
+x &lt;- 5
+x &lt;- 6090
 total_participants &lt;- 150
 response_rate &lt;- 0.75
-actual_responses &lt;- total_participants * response_rate
+actual_responses &lt;- x * response_rate
 
 print(actual_responses)</code></pre>
-<pre><code>## [1] 112.5</code></pre>
+<pre><code>## [1] 4567.5</code></pre>
 </div>
 <div id="object-oriented-programming-in-r" class="section level2">
 <h2>Object-Oriented Programming in R</h2>
@@ -493,16 +501,20 @@ media_usage_hours == 5      # Equal to: FALSE</code></pre>
 <pre class="r"><code>#Your turn, calculate the following things
 #Jenny recruited 927 participants who responded to a survey and Tom recruited an additional 807 participants. How many total participants were recruited by Jenny and Tom?
 #Create a variable called total_participants
+Jenny &lt;- 927
+Tom &lt;- 807
+total_participants &lt;- Jenny + Tom
 
 #Only 1/3 of Jenny and Tom&#39;s participants completed the full survey. How many participants completed the full survey?
 actual_responses &lt;- total_participants/3
 
-#print(actual_responses)
+print(actual_responses)</code></pre>
+<pre><code>## [1] 578</code></pre>
+<pre class="r"><code>#Of the &#39;actual_responses&#39;, only 50 people completed the free response portion of the study. What percentage of people completed the free response?
+completed_fr &lt;- (50/actual_responses)*100
 
-#Of the &#39;actual_responses&#39;, only 50 people completed the free response protion of the study. What percentage of people completed the free response?
-#completed_fr &lt;- 
-
-#print(completed_fr)</code></pre>
+print(completed_fr)</code></pre>
+<pre><code>## [1] 8.650519</code></pre>
 </div>
 <div id="logical-operators" class="section level2">
 <h2>Logical Operators</h2>
@@ -539,6 +551,8 @@ age &lt;- 22
 eligible &lt;- age &gt;= 18  # Returns TRUE if 18 or older
 print(eligible)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>typeof(consent_given)</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
 </div>
 <div id="numeric-numbers" class="section level2">
 <h2>2. Numeric (Numbers)</h2>
@@ -549,13 +563,13 @@ credibility_rating &lt;- 6.8
 years_experience &lt;- 3
 
 # Check data type
-typeof(attitude_score)</code></pre>
+typeof(years_experience)</code></pre>
 <pre><code>## [1] &quot;double&quot;</code></pre>
 </div>
 <div id="character-text" class="section level2">
 <h2>3. Character (Text)</h2>
 <p>For names, categories, open-ended responses:</p>
-<pre class="r"><code>participant_id &lt;- &quot;P001&quot;
+<pre class="r"><code>participant_id &lt;- &quot;001&quot;
 media_type &lt;- &quot;social media&quot;
 response_text &lt;- &quot;I think social media influences political opinions&quot;
 
@@ -670,6 +684,8 @@ mean(trust_scores)    # Calculate average trust</code></pre>
 <pre><code>## [1] 3</code></pre>
 <pre class="r"><code>length(trust_scores)  # How many responses</code></pre>
 <pre><code>## [1] 7</code></pre>
+<pre class="r"><code>median(trust_scores)</code></pre>
+<pre><code>## [1] 6</code></pre>
 </div>
 <div id="getting-help-with-functions" class="section level2">
 <h2>Getting Help with Functions</h2>
@@ -708,20 +724,25 @@ head(participant_data)      # First few rows</code></pre>
 ##  Min.nchar:4   Mean   :21.75   Mean   :4.90   Min.nchar:6   Mean   :2.900  
 ##  Max.nchar:4   3rd Qu.:22.75   3rd Qu.:5.65   Max.nchar:9   3rd Qu.:3.825  
 ##                Max.   :25.00   Max.   :6.10                 Max.   :4.800</code></pre>
+<pre class="r"><code>#chr = character
+#num = numeric</code></pre>
 </div>
 <div id="creating-your-own-functions" class="section level2">
 <h2>Creating Your Own Functions</h2>
 <p>Sometimes you need custom calculations for your research:</p>
 <pre class="r"><code># Function to convert 7-point scale to percentage
-scale_to_percent &lt;- function(score, max_scale = 7) {
+scale_to_percent &lt;- function(score , max_scale = 7) {
   percentage &lt;- (score / max_scale) * 100
   return(percentage)
 }
 
+#function (input, define variables)
+# {funtion}
+
 # Test it
-trust_percentage &lt;- scale_to_percent(5.2)
+trust_percentage &lt;- scale_to_percent(6)
 print(trust_percentage)</code></pre>
-<pre><code>## [1] 74.28571</code></pre>
+<pre><code>## [1] 85.71429</code></pre>
 <hr />
 </div>
 </div>
@@ -736,11 +757,23 @@ instagram_users &lt;- 200
 
 # Your code here - test these relationships:
 # 1. Are Facebook and Instagram users equal?
-# 2. Are they not equal?
-# 3. Does Instagram have more users?
-# 4. Does Facebook have fewer users?
-# 5. Does Instagram have at least 150 users?
-# 6. Does Facebook have 150 or fewer users?</code></pre>
+facebook_users == instagram_users</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code># 2. Are they not equal?
+facebook_users != instagram_users</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code># 3. Does Instagram have more users?
+instagram_users &gt; facebook_users</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code># 4. Does Facebook have fewer users?
+instagram_users &lt; facebook_users</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code># 5. Does Instagram have at least 150 users?
+instagram_users &gt;= 150</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code># 6. Does Facebook have 150 or fewer users?
+facebook_users &lt;= 150</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="exercise-2-calculate-survey-statistics" class="section level2">
 <h2>Exercise 2: Calculate Survey Statistics</h2>
@@ -748,14 +781,21 @@ instagram_users &lt;- 200
 scale):</p>
 <pre class="r"><code>credibility_scores &lt;- c(7.2, 5.8, 8.1, 6.4, 4.9, 7.7, 6.3, 8.5)
 
-# Your code here: calculate the mean</code></pre>
+# Your code here: calculate the mean
+mean(credibility_scores)</code></pre>
+<pre><code>## [1] 6.8625</code></pre>
 </div>
 <div id="exercise-3-create-a-research-vector" class="section level2">
 <h2>Exercise 3: Create a Research Vector</h2>
 <p>Create a character vector with different news sources and print the
 third source:</p>
 <pre class="r"><code># Your code here: create &#39;news_sources&#39; vector with at least 5 sources
-# Then print the third element</code></pre>
+# Then print the third element
+
+news_sources &lt;- c(&quot;telemundo&quot;, &quot;dailysun&quot;, &quot;abc&quot;, &quot;npr&quot;, &quot;nyt&quot;)
+
+print(news_sources[3])</code></pre>
+<pre><code>## [1] &quot;abc&quot;</code></pre>
 </div>
 <div id="exercise-4-build-a-data-matrix" class="section level2">
 <h2>Exercise 4: Build a Data Matrix</h2>
@@ -763,14 +803,42 @@ third source:</p>
 <pre class="r"><code># Create a 3x4 matrix with engagement numbers
 # Rows: different content types (posts, stories, reels)  
 # Columns: different platforms
-# Your code here:</code></pre>
+# Your code here:
+engage_num &lt;- matrix(
+  c(6.2, 5.8, 7.1, 4.9,  # Posts
+    5.5, 6.3, 6.8, 5.2,  # Stories
+    7.0, 6.9, 7.3, 6.1), # Reels
+  nrow = 3, 
+  byrow = TRUE
+)
+
+colnames(engage_num) &lt;- c(&quot;Facebook&quot;, &quot;Instagram&quot;, &quot;Snapchat&quot;, &quot;Reddit&quot;)
+rownames(engage_num) &lt;- c(&quot;Posts&quot;, &quot;Stories&quot;, &quot;Reels&quot;)
+
+print (engage_num)</code></pre>
+<pre><code>##         Facebook Instagram Snapchat Reddit
+## Posts        6.2       5.8      7.1    4.9
+## Stories      5.5       6.3      6.8    5.2
+## Reels        7.0       6.9      7.3    6.1</code></pre>
 </div>
 <div id="exercise-5-custom-function-challenge" class="section level2">
 <h2>Exercise 5: Custom Function Challenge</h2>
 <p>Create a function that calculates response rate (completed/total *
 100):</p>
 <pre class="r"><code># Your code here: create response_rate() function
-# Test it with: 85 completed out of 120 total surveys</code></pre>
+# Test it with: 85 completed out of 120 total surveys
+response_rate &lt;- function(completed, total_survey) {
+  rate &lt;- (completed / total_survey) * 100
+  return(rate)
+}
+
+#function (input, define variables)
+# {funtion}
+
+# Test it
+final_responses &lt;- response_rate(85, 120)
+print(final_responses)</code></pre>
+<pre><code>## [1] 70.83333</code></pre>
 <hr />
 </div>
 </div>
@@ -810,7 +878,7 @@ files in that drawer.</p>
 <pre><code>## [1] &quot;C:/Users/kylie/Downloads&quot;</code></pre>
 <p>This will show you the full path to where R is currently looking for
 files. If you need to change your working directory, you can use:</p>
-<pre class="r"><code># setwd(&quot;path/to/your/project&quot;)  # &quot;set working directory&quot;
+<pre class="r"><code>setwd(&quot;C:/Users/kylie/Desktop/UCSB/Classes/jumpstart26&quot;)  # &quot;set working directory&quot;
 # But we&#39;ll use the here package instead for better practice!</code></pre>
 </div>
 <div id="the-here-package-solution" class="section level3">
@@ -819,10 +887,10 @@ files. If you need to change your working directory, you can use:</p>
 your code works on any computer, regardless of where the project folder
 is stored.</p>
 <pre class="r"><code># Without here (problematic):
-# data &lt;- read_csv(&quot;/Users/hannah/Documents/research/data/survey.csv&quot;)  # Won&#39;t work on other computers!
+#data &lt;- read_csv(&quot;/Users/hannah/Documents/research/data/survey.csv&quot;)  # Won&#39;t work on other computers!
 
 # With here (better):
-# data &lt;- read_csv(here(&quot;data&quot;, &quot;survey.csv&quot;))  # Works anywhere!</code></pre>
+#data &lt;- read_csv(here(&quot;data&quot;, &quot;survey.csv&quot;))  # Works anywhere!</code></pre>
 <p>The <code>here</code> package automatically finds your project root
 and builds paths from there.</p>
 <hr />
@@ -848,7 +916,18 @@ comm_survey &lt;- read_csv(here(&quot;data&quot;, &quot;communication_survey.csv
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code># Pro tip: Use tab completion!
+<pre class="r"><code>comm_survey &lt;- data
+comm_survey &lt;- read_csv(&quot;data/communication_survey.csv&quot;)</code></pre>
+<pre><code>## Rows: 50 Columns: 5
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (2): id, platform
+## dbl (3): age, media_trust, daily_use_hours
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>#C:\Users\kylie\Desktop\R_working_dir
+# Pro tip: Use tab completion!
 # Type read_csv(here(&quot;data&quot;, then press TAB to see available files</code></pre>
 <p>Let’s work with a fake dataset about media consumption and trust:</p>
 <pre class="r"><code># For this example, we&#39;ll use a media trust survey dataset
@@ -957,7 +1036,7 @@ tasks</li>
 <div id="installing-and-loading-packages" class="section level2">
 <h2>Installing and Loading Packages</h2>
 <pre class="r"><code># Install a package (only do this once per computer)
-# install.packages(&quot;tidyverse&quot;)
+#install.packages(&quot;tidyverse&quot;)
 
 # Load a package (do this every R session)
 library(tidyverse)
@@ -1024,9 +1103,15 @@ result &lt;- summarize(filter(select(media_data, age, trust_score), age &gt; 25)
 
 # With pipes (much clearer!):
 result &lt;- media_data %&gt;%
-  select(age, trust_score) %&gt;%
-  filter(age &gt; 25) %&gt;%
-  summarize(mean_trust = mean(trust_score))</code></pre>
+  select(age, trust_score) %&gt;%             #select
+  filter(age &gt; 30) %&gt;%                     #filter
+  summarize(mean_trust = mean(trust_score))#mean
+
+print(result)</code></pre>
+<pre><code>## # A tibble: 1 × 1
+##   mean_trust
+##        &lt;dbl&gt;
+## 1       3.96</code></pre>
 </div>
 <div id="select-choose-your-variables" class="section level2">
 <h2>select(): Choose Your Variables</h2>
@@ -1039,9 +1124,31 @@ core_variables &lt;- media_data %&gt;%
 demographic_vars &lt;- media_data %&gt;%
   select(participant_id:gender)  # All columns from participant_id to gender
 
-# Note: You can also remove unwanted variables with a minus sign
+print(demographic_vars)</code></pre>
+<pre><code>## # A tibble: 250 × 3
+##    participant_id   age gender           
+##    &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;            
+##  1 P001              30 Female           
+##  2 P002              29 Female           
+##  3 P003              53 Male             
+##  4 P004              43 Prefer not to say
+##  5 P005              18 Female           
+##  6 P006              40 Male             
+##  7 P007              27 Male             
+##  8 P008              30 Female           
+##  9 P009              66 Male             
+## 10 P010              29 Male             
+## # ℹ 240 more rows</code></pre>
+<pre class="r"><code># Note: You can also remove unwanted variables with a minus sign
 # clean_data &lt;- media_data %&gt;%
-#   select(-age)  # This would remove these columns</code></pre>
+#   select(-age)  # This would remove these columns
+# 
+# 
+# 
+# clean_data &lt;- media_data %&gt;%
+#   select(-c(participant_id:gender))  # This would remove these columns
+
+#print(clean_data)</code></pre>
 </div>
 <div id="filter-choose-your-observations" class="section level2">
 <h2>filter(): Choose Your Observations</h2>
@@ -1108,8 +1215,12 @@ overall_stats &lt;- media_data %&gt;%
     median_age = median(age, na.rm = TRUE),
     total_participants = n()
   )
-
-# Statistics by group
+print(overall_stats)</code></pre>
+<pre><code>## # A tibble: 1 × 3
+##   mean_trust median_age total_participants
+##        &lt;dbl&gt;      &lt;dbl&gt;              &lt;int&gt;
+## 1       3.70         47                250</code></pre>
+<pre class="r"><code># Statistics by group
 trust_by_source &lt;- media_data %&gt;%
   group_by(news_source) %&gt;%
   summarize(
@@ -1136,14 +1247,37 @@ print(trust_by_source)</code></pre>
 <h2>arrange(): Sort Your Data</h2>
 <p>Use <code>arrange()</code> to sort rows:</p>
 <pre class="r"><code># Sort by trust score (lowest to highest)
-sorted_data &lt;- media_data %&gt;%
+sorted_data &lt;- media_data %&gt;%  
   arrange(trust_score)
 
-# Sort by trust score (highest to lowest)  
+head(sorted_data)</code></pre>
+<pre><code>## # A tibble: 6 × 10
+##   participant_id   age gender           education news_source daily_news_minutes
+##   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;                    &lt;dbl&gt;
+## 1 P002              29 Female           Bachelor… Online New…                 75
+## 2 P039              20 Female           Bachelor… Online New…                146
+## 3 P095              40 Male             High Sch… Online New…                156
+## 4 P097              19 Male             High Sch… Twitter                     59
+## 5 P100              30 Prefer not to s… Bachelor… Instagram                  109
+## 6 P109              31 Female           High Sch… Instagram                   26
+## # ℹ 4 more variables: political_interest &lt;dbl&gt;, income_bracket &lt;chr&gt;,
+## #   trust_score &lt;dbl&gt;, credibility_rating &lt;dbl&gt;</code></pre>
+<pre class="r"><code># Sort by trust score (highest to lowest)  
 sorted_desc &lt;- media_data %&gt;%
   arrange(desc(trust_score))
-
-# Sort by multiple variables
+head(sorted_desc)</code></pre>
+<pre><code>## # A tibble: 6 × 10
+##   participant_id   age gender education  news_source       daily_news_minutes
+##   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;                          &lt;dbl&gt;
+## 1 P010              29 Male   Bachelor&#39;s Podcasts                         170
+## 2 P035              75 Male   Bachelor&#39;s Newspapers                         7
+## 3 P173              75 Female Bachelor&#39;s Online News Sites                180
+## 4 P098              51 Male   Master&#39;s   Online News Sites                 55
+## 5 P139              59 Male   Bachelor&#39;s Television                        75
+## 6 P028              61 Male   Master&#39;s   Newspapers                       106
+## # ℹ 4 more variables: political_interest &lt;dbl&gt;, income_bracket &lt;chr&gt;,
+## #   trust_score &lt;dbl&gt;, credibility_rating &lt;dbl&gt;</code></pre>
+<pre class="r"><code># Sort by multiple variables
 multi_sort &lt;- media_data %&gt;%
   arrange(news_source, desc(trust_score))
 
@@ -1170,23 +1304,109 @@ political engagement!</p>
 <h2>Exercise 1: Data Import and Exploration</h2>
 <p>Read in the social media dataset and explore its structure:</p>
 <pre class="r"><code># Read in the dataset
-# social_media_data &lt;- read_csv(here(&quot;data&quot;, &quot;social_media_engagement.csv&quot;))
-
-# Explore the data structure
-# Your code here: use glimpse(), summary(), and head()</code></pre>
+social_media_data &lt;- read_csv(here(&quot;data&quot;, &quot;social_media_engagement.csv&quot;))</code></pre>
+<pre><code>## Rows: 300 Columns: 10
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (2): user_id, platform
+## dbl (8): age, daily_hours, posts_per_week, engagement_score, follower_count,...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code># Explore the data structure
+# Your code here: use glimpse(), summary(), and head()
+glimpse(social_media_data)</code></pre>
+<pre><code>## Rows: 300
+## Columns: 10
+## $ user_id                &lt;chr&gt; &quot;U001&quot;, &quot;U002&quot;, &quot;U003&quot;, &quot;U004&quot;, &quot;U005&quot;, &quot;U006&quot;,…
+## $ age                    &lt;dbl&gt; 44, 31, 52, 64, 22, 54, 28, 54, 41, 26, 51, 27,…
+## $ platform               &lt;chr&gt; &quot;Instagram&quot;, &quot;Facebook&quot;, &quot;Facebook&quot;, &quot;Facebook&quot;…
+## $ daily_hours            &lt;dbl&gt; 5.9, 4.6, 3.5, 0.4, 7.0, 4.5, 2.2, 2.6, 2.1, 6.…
+## $ posts_per_week         &lt;dbl&gt; 5, 1, 9, 6, 4, 3, 3, 4, 4, 3, 2, 2, 1, 5, 6, 1,…
+## $ engagement_score       &lt;dbl&gt; 100.0, 51.0, 78.7, 100.0, 49.9, 72.3, 32.3, 82.…
+## $ follower_count         &lt;dbl&gt; 65, 24, 366, 5555, 11, 17, 32, 2708, 1265, 25, …
+## $ political_posts_week   &lt;dbl&gt; 1, 3, 2, 3, 2, 2, 3, 1, 3, 0, 1, 2, 0, 2, 3, 0,…
+## $ news_sharing_frequency &lt;dbl&gt; 2, 2, 2, 2, 4, 1, 1, 1, 2, 4, 2, 4, 2, 2, 3, 1,…
+## $ platform_satisfaction  &lt;dbl&gt; 3, 5, 6, 5, 4, 5, 4, 4, 5, 7, 4, 5, 3, 4, 4, 5,…</code></pre>
+<pre class="r"><code>summary(social_media_data)</code></pre>
+<pre><code>##       user_id         age             platform    daily_hours   
+##  Length   :300   Min.   :16.00   Length   :300   Min.   :0.100  
+##  N.unique :300   1st Qu.:26.00   N.unique :  6   1st Qu.:2.000  
+##  N.blank  :  0   Median :39.00   N.blank  :  0   Median :3.900  
+##  Min.nchar:  4   Mean   :39.89   Min.nchar:  6   Mean   :3.824  
+##  Max.nchar:  4   3rd Qu.:53.00   Max.nchar:  9   3rd Qu.:5.800  
+##                  Max.   :65.00                   Max.   :7.900  
+##  posts_per_week   engagement_score follower_count     political_posts_week
+##  Min.   : 0.000   Min.   : 23.10   Min.   :   10.00   Min.   :0.000       
+##  1st Qu.: 2.750   1st Qu.: 49.60   1st Qu.:   63.75   1st Qu.:1.000       
+##  Median : 4.000   Median : 65.25   Median :  512.00   Median :1.000       
+##  Mean   : 4.013   Mean   : 64.17   Mean   : 2998.42   Mean   :1.663       
+##  3rd Qu.: 5.000   3rd Qu.: 78.85   3rd Qu.: 2844.25   3rd Qu.:2.000       
+##  Max.   :11.000   Max.   :100.00   Max.   :31116.00   Max.   :6.000       
+##  news_sharing_frequency platform_satisfaction
+##  Min.   :1.000          Min.   :1.000        
+##  1st Qu.:1.000          1st Qu.:3.000        
+##  Median :2.000          Median :4.000        
+##  Mean   :2.463          Mean   :4.213        
+##  3rd Qu.:3.000          3rd Qu.:5.000        
+##  Max.   :5.000          Max.   :7.000</code></pre>
+<pre class="r"><code>head(social_media_data)</code></pre>
+<pre><code>## # A tibble: 6 × 10
+##   user_id   age platform  daily_hours posts_per_week engagement_score
+##   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;          &lt;dbl&gt;            &lt;dbl&gt;
+## 1 U001       44 Instagram         5.9              5            100  
+## 2 U002       31 Facebook          4.6              1             51  
+## 3 U003       52 Facebook          3.5              9             78.7
+## 4 U004       64 Facebook          0.4              6            100  
+## 5 U005       22 Facebook          7                4             49.9
+## 6 U006       54 TikTok            4.5              3             72.3
+## # ℹ 4 more variables: follower_count &lt;dbl&gt;, political_posts_week &lt;dbl&gt;,
+## #   news_sharing_frequency &lt;dbl&gt;, platform_satisfaction &lt;dbl&gt;</code></pre>
 </div>
 <div id="exercise-2-variable-selection" class="section level2">
 <h2>Exercise 2: Variable Selection</h2>
 <p>Select only the variables related to platform usage and
 engagement:</p>
 <pre class="r"><code># Select: user_id, platform, daily_hours, posts_per_week, engagement_score
-# Your code here:</code></pre>
+# Your code here:
+sub_sm &lt;- social_media_data %&gt;%
+  select(user_id, platform, daily_hours, posts_per_week, engagement_score)
+
+head(sub_sm)</code></pre>
+<pre><code>## # A tibble: 6 × 5
+##   user_id platform  daily_hours posts_per_week engagement_score
+##   &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;          &lt;dbl&gt;            &lt;dbl&gt;
+## 1 U001    Instagram         5.9              5            100  
+## 2 U002    Facebook          4.6              1             51  
+## 3 U003    Facebook          3.5              9             78.7
+## 4 U004    Facebook          0.4              6            100  
+## 5 U005    Facebook          7                4             49.9
+## 6 U006    TikTok            4.5              3             72.3</code></pre>
 </div>
 <div id="exercise-3-filtering-data" class="section level2">
 <h2>Exercise 3: Filtering Data</h2>
 <p>Filter for users who spend more than 2 hours per day on social
 media:</p>
-<pre class="r"><code># Your code here:</code></pre>
+<pre class="r"><code># Your code here:
+filter_sm &lt;- social_media_data %&gt;%
+  filter(daily_hours &gt; 2)%&gt;%
+  select(user_id, daily_hours)
+
+print(filter_sm)</code></pre>
+<pre><code>## # A tibble: 223 × 2
+##    user_id daily_hours
+##    &lt;chr&gt;         &lt;dbl&gt;
+##  1 U001            5.9
+##  2 U002            4.6
+##  3 U003            3.5
+##  4 U005            7  
+##  5 U006            4.5
+##  6 U007            2.2
+##  7 U008            2.6
+##  8 U009            2.1
+##  9 U010            6.1
+## 10 U011            6.3
+## # ℹ 213 more rows</code></pre>
 </div>
 <div id="exercise-4-creating-categories" class="section level2">
 <h2>Exercise 4: Creating Categories</h2>
@@ -1194,30 +1414,124 @@ media:</p>
 or “Heavy” users based on daily hours:</p>
 <pre class="r"><code># Use mutate() and case_when():
 # Light: &lt; 1 hour, Moderate: 1-3 hours, Heavy: &gt; 3 hours
-# Your code here:</code></pre>
+# Your code here:
+mutate_sm &lt;- social_media_data %&gt;%
+  mutate(
+   sm_group = case_when(
+      daily_hours &lt; 1 ~ &quot;Light&quot;,
+      daily_hours &gt;= 1 &amp; age &lt; 3 ~ &quot;Moderate&quot;, 
+      daily_hours &gt;= 3 ~ &quot;Heavy&quot; ))
+
+head(mutate_sm)</code></pre>
+<pre><code>## # A tibble: 6 × 11
+##   user_id   age platform  daily_hours posts_per_week engagement_score
+##   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;          &lt;dbl&gt;            &lt;dbl&gt;
+## 1 U001       44 Instagram         5.9              5            100  
+## 2 U002       31 Facebook          4.6              1             51  
+## 3 U003       52 Facebook          3.5              9             78.7
+## 4 U004       64 Facebook          0.4              6            100  
+## 5 U005       22 Facebook          7                4             49.9
+## 6 U006       54 TikTok            4.5              3             72.3
+## # ℹ 5 more variables: follower_count &lt;dbl&gt;, political_posts_week &lt;dbl&gt;,
+## #   news_sharing_frequency &lt;dbl&gt;, platform_satisfaction &lt;dbl&gt;, sm_group &lt;chr&gt;</code></pre>
 </div>
 <div id="exercise-5-group-analysis" class="section level2">
 <h2>Exercise 5: Group Analysis</h2>
 <p>Calculate the average engagement score by platform:</p>
-<pre class="r"><code># Your code here: use group_by() and summarize()</code></pre>
+<pre class="r"><code># Your code here: use group_by() and summarize()
+group_sm &lt;- social_media_data %&gt;% 
+  group_by(platform) %&gt;%
+  summarize(
+    mean_engagement = mean(engagement_score, na.rm = TRUE),
+    total_participants = n()
+  )
+
+print(group_sm)</code></pre>
+<pre><code>## # A tibble: 6 × 3
+##   platform  mean_engagement total_participants
+##   &lt;chr&gt;               &lt;dbl&gt;              &lt;int&gt;
+## 1 Facebook             64.3                 82
+## 2 Instagram            63.4                 80
+## 3 LinkedIn             62.2                 19
+## 4 TikTok               63.3                 65
+## 5 Twitter              67.7                 35
+## 6 YouTube              65.5                 19</code></pre>
 </div>
 <div id="exercise-6-sorting-and-rankings" class="section level2">
 <h2>Exercise 6: Sorting and Rankings</h2>
 <p>Sort platforms by average engagement score (highest to lowest):</p>
-<pre class="r"><code># Your code here: use arrange() with desc()</code></pre>
+<pre class="r"><code># Your code here: use arrange() with desc()
+arr_sm &lt;- group_sm %&gt;% 
+  arrange(mean_engagement)
+print(arr_sm)</code></pre>
+<pre><code>## # A tibble: 6 × 3
+##   platform  mean_engagement total_participants
+##   &lt;chr&gt;               &lt;dbl&gt;              &lt;int&gt;
+## 1 LinkedIn             62.2                 19
+## 2 TikTok               63.3                 65
+## 3 Instagram            63.4                 80
+## 4 Facebook             64.3                 82
+## 5 YouTube              65.5                 19
+## 6 Twitter              67.7                 35</code></pre>
+<pre class="r"><code>desc_sm &lt;- group_sm %&gt;% 
+  arrange(desc(mean_engagement)) 
+print(desc_sm)</code></pre>
+<pre><code>## # A tibble: 6 × 3
+##   platform  mean_engagement total_participants
+##   &lt;chr&gt;               &lt;dbl&gt;              &lt;int&gt;
+## 1 Twitter              67.7                 35
+## 2 YouTube              65.5                 19
+## 3 Facebook             64.3                 82
+## 4 Instagram            63.4                 80
+## 5 TikTok               63.3                 65
+## 6 LinkedIn             62.2                 19</code></pre>
 </div>
 <div id="exercise-7-complex-analysis" class="section level2">
 <h2>Exercise 7: Complex Analysis</h2>
-<p>Find the top 3 platforms with highest engagement among heavy
-users:</p>
+<p>Find the top 3 platforms with highest engagement among heavy users
+*:</p>
 <pre class="r"><code># Hint: combine filter(), group_by(), summarize(), arrange(), and head()
-# Your code here:</code></pre>
+# Your code here:
+top3_sum &lt;- mutate_sm %&gt;%
+  filter(sm_group == &quot;Heavy&quot;) %&gt;%
+  group_by(platform) %&gt;%
+  summarize(
+    mean_engage = mean(engagement_score))%&gt;%
+  arrange(desc(mean_engage))
+
+head(top3_sum, 3)</code></pre>
+<pre><code>## # A tibble: 3 × 2
+##   platform mean_engage
+##   &lt;chr&gt;          &lt;dbl&gt;
+## 1 YouTube         72.6
+## 2 Twitter         67.5
+## 3 Facebook        65.9</code></pre>
 </div>
 <div id="exercise-8-creating-summary-statistics" class="section level2">
 <h2>Exercise 8: Creating Summary Statistics</h2>
 <p>Create a comprehensive summary table showing platform statistics:</p>
 <pre class="r"><code># Calculate: mean daily hours, mean engagement, user count, and percentage of heavy users
-# Your code here:</code></pre>
+# Your code here:
+sumtable &lt;- mutate_sm %&gt;%
+      group_by(platform) %&gt;%
+  summarize(
+    mean_daily_hours = mean(daily_hours, na.rm = TRUE),
+    mean_engagement = mean(engagement_score, na.rm = TRUE),
+    user_count = n(),
+    heavy_user_perc = sum(sm_group == &quot;Heavy&quot;, na.rm = TRUE) / n() * 100,
+    .groups = &#39;drop&#39;
+  )
+
+sumtable</code></pre>
+<pre><code>## # A tibble: 6 × 5
+##   platform  mean_daily_hours mean_engagement user_count heavy_user_perc
+##   &lt;chr&gt;                &lt;dbl&gt;           &lt;dbl&gt;      &lt;int&gt;           &lt;dbl&gt;
+## 1 Facebook              3.86            64.3         82            61.0
+## 2 Instagram             3.96            63.4         80            65  
+## 3 LinkedIn              3.49            62.2         19            68.4
+## 4 TikTok                4.10            63.3         65            70.8
+## 5 Twitter               3.24            67.7         35            45.7
+## 6 YouTube               3.54            65.5         19            52.6</code></pre>
 <hr />
 </div>
 </div>
