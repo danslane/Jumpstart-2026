@@ -2,13 +2,16 @@
 title: "Tuesday - Jumpstart 2026"
 author: "Kylie Falcione"
 date: "2026-08-15"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(here)
 library(tidyverse)
+setwd("C:/Users/kylie/Desktop/UCSB/Classes/jumpstart26")
 ```
 
 # Welcome to R for Communication Research!
@@ -17,10 +20,10 @@ Welcome to the second day of Jumpstart! Today we'll introduce you to R and RStud
 
 ## Today's Learning Goals:
 
--   Familiarize yourself with RStudio's interface
--   Learn basic R commands and operations
--   Understand fundamental data types and structures
--   Practice with communication research examples
+- Familiarize yourself with RStudio's interface
+- Learn basic R commands and operations
+- Understand fundamental data types and structures
+- Practice with communication research examples
 
 Many of our lessons are inspired by *R for Data Science*. Check it out here: <https://r4ds.hadley.nz/>
 
@@ -31,19 +34,19 @@ Many of our lessons are inspired by *R for Data Science*. Check it out here: <ht
 **RStudio has four main panels:**
 
 1.  **Source Editor (Top Left)**
-    -   Where you write and save your R code (.R files and .Rmd files)
-    -   Think of this as your "notebook" for analysis
+    - Where you write and save your R code (.R files and .Rmd files)
+    - Think of this as your "notebook" for analysis
 2.  **Console (Bottom Left)**
-    -   Executes code immediately but doesn't save it
-    -   Shows output from your code
-    -   Good for quick calculations and testing
+    - Executes code immediately but doesn't save it
+    - Shows output from your code
+    - Good for quick calculations and testing
 3.  **Environment/History (Top Right)**
-    -   Shows all your data objects and variables
-    -   Think of this as your "workspace inventory"
+    - Shows all your data objects and variables
+    - Think of this as your "workspace inventory"
 4.  **Files/Plots/Help (Bottom Right)**
-    -   **Plots**: Where your visualizations appear
-    -   **Files**: Navigate your project folders
-    -   **Help**: Documentation for functions
+    - **Plots**: Where your visualizations appear
+    - **Files**: Navigate your project folders
+    - **Help**: Documentation for functions
 
 ------------------------------------------------------------------------
 
@@ -60,13 +63,16 @@ R works like a powerful calculator, but it can also store results for later use.
 15 * 8      # Multiplication - scaling survey items
 120 / 4     # Division - calculating averages
 3^2         # Exponentiation - calculating effect sizes
+
+5+78
 ```
+
 ```{r}
 #Your turn, calculate the following things
 #Jenny recruited 1927 participants who responded to a survey and Tom recruited an additional 807 participants. How many total participants were recruited by Jenny and Tom?
-
+1927 + 807
 #Only 1/4 of Jenny and Tom's participants completed the full survey. How many participants completed the full survey?
-
+2734 / 4
 ```
 
 ## Storing Results in Objects
@@ -75,13 +81,15 @@ One of R's most powerful features is storing results in objects:
 
 ```{r}
 # Store a value for later use
+x = 3
+x <- 5
+x <- 6090
 total_participants <- 150
 response_rate <- 0.75
-actual_responses <- total_participants * response_rate
+actual_responses <- x * response_rate
 
 print(actual_responses)
 ```
-
 
 ## Object-Oriented Programming in R
 
@@ -123,18 +131,22 @@ media_usage_hours < 3       # Less than: FALSE
 social_media_posts >= 12    # Greater than or equal: TRUE
 media_usage_hours <= 4      # Less than or equal: FALSE
 ```
+
 ```{r}
 #Your turn, calculate the following things
 #Jenny recruited 927 participants who responded to a survey and Tom recruited an additional 807 participants. How many total participants were recruited by Jenny and Tom?
 #Create a variable called total_participants
+Jenny <- 927
+Tom <- 807
+total_participants <- Jenny + Tom
 
 #Only 1/3 of Jenny and Tom's participants completed the full survey. How many participants completed the full survey?
 actual_responses <- total_participants/3
 
 print(actual_responses)
 
-#Of the 'actual_responses', only 50 people completed the free response protion of the study. What percentage of people completed the free response?
-#completed_fr <- 
+#Of the 'actual_responses', only 50 people completed the free response portion of the study. What percentage of people completed the free response?
+completed_fr <- (50/actual_responses)*100
 
 print(completed_fr)
 ```
@@ -173,6 +185,8 @@ consent_given <- TRUE
 age <- 22
 eligible <- age >= 18  # Returns TRUE if 18 or older
 print(eligible)
+
+typeof(consent_given)
 ```
 
 ## 2. Numeric (Numbers)
@@ -186,7 +200,7 @@ credibility_rating <- 6.8
 years_experience <- 3
 
 # Check data type
-typeof(attitude_score)
+typeof(years_experience)
 ```
 
 ## 3. Character (Text)
@@ -194,7 +208,7 @@ typeof(attitude_score)
 For names, categories, open-ended responses:
 
 ```{r}
-participant_id <- "P001"
+participant_id <- "001"
 media_type <- "social media"
 response_text <- "I think social media influences political opinions"
 
@@ -282,10 +296,10 @@ Functions are pre-built tools that perform specific tasks. You've already used s
 
 ## What We've Already Used:
 
--   `c()` - combine values into a vector
--   `typeof()` - check data type\
--   `data.frame()` - create a data frame
--   `matrix()` - create a matrix
+- `c()` - combine values into a vector
+- `typeof()` - check data type\
+- `data.frame()` - create a data frame
+- `matrix()` - create a matrix
 
 ## Common Research Functions:
 
@@ -299,6 +313,7 @@ sort(trust_scores)    # Sort from low to high
 max(trust_scores)     # Highest score
 min(trust_scores)     # Lowest score
 length(trust_scores)  # How many responses
+median(trust_scores)
 ```
 
 ## Getting Help with Functions
@@ -317,6 +332,9 @@ head(participant_data)      # First few rows
 tail(participant_data)      # Last few rows  
 str(participant_data)       # Structure of the data
 summary(participant_data)   # Basic statistics
+
+#chr = character
+#num = numeric
 ```
 
 ## Creating Your Own Functions
@@ -325,13 +343,16 @@ Sometimes you need custom calculations for your research:
 
 ```{r}
 # Function to convert 7-point scale to percentage
-scale_to_percent <- function(score, max_scale = 7) {
+scale_to_percent <- function(score , max_scale = 7) {
   percentage <- (score / max_scale) * 100
   return(percentage)
 }
 
+#function (input, define variables)
+# {funtion}
+
 # Test it
-trust_percentage <- scale_to_percent(5.2)
+trust_percentage <- scale_to_percent(6)
 print(trust_percentage)
 ```
 
@@ -351,11 +372,22 @@ instagram_users <- 200
 
 # Your code here - test these relationships:
 # 1. Are Facebook and Instagram users equal?
+facebook_users == instagram_users
+
 # 2. Are they not equal?
+facebook_users != instagram_users
+
 # 3. Does Instagram have more users?
+instagram_users > facebook_users
+
 # 4. Does Facebook have fewer users?
+instagram_users < facebook_users
+
 # 5. Does Instagram have at least 150 users?
+instagram_users >= 150
+
 # 6. Does Facebook have 150 or fewer users?
+facebook_users <= 150
 
 ```
 
@@ -367,6 +399,7 @@ Calculate the mean of these media credibility scores (1-10 scale):
 credibility_scores <- c(7.2, 5.8, 8.1, 6.4, 4.9, 7.7, 6.3, 8.5)
 
 # Your code here: calculate the mean
+mean(credibility_scores)
 
 ```
 
@@ -377,6 +410,10 @@ Create a character vector with different news sources and print the third source
 ```{r}
 # Your code here: create 'news_sources' vector with at least 5 sources
 # Then print the third element
+
+news_sources <- c("telemundo", "dailysun", "abc", "npr", "nyt")
+
+print(news_sources[3])
 
 ```
 
@@ -389,6 +426,18 @@ Create a matrix showing social media engagement across platforms:
 # Rows: different content types (posts, stories, reels)  
 # Columns: different platforms
 # Your code here:
+engage_num <- matrix(
+  c(6.2, 5.8, 7.1, 4.9,  # Posts
+    5.5, 6.3, 6.8, 5.2,  # Stories
+    7.0, 6.9, 7.3, 6.1), # Reels
+  nrow = 3, 
+  byrow = TRUE
+)
+
+colnames(engage_num) <- c("Facebook", "Instagram", "Snapchat", "Reddit")
+rownames(engage_num) <- c("Posts", "Stories", "Reels")
+
+print (engage_num)
 
 ```
 
@@ -399,7 +448,17 @@ Create a function that calculates response rate (completed/total \* 100):
 ```{r}
 # Your code here: create response_rate() function
 # Test it with: 85 completed out of 120 total surveys
+response_rate <- function(completed, total_survey) {
+  rate <- (completed / total_survey) * 100
+  return(rate)
+}
 
+#function (input, define variables)
+# {funtion}
+
+# Test it
+final_responses <- response_rate(85, 120)
+print(final_responses)
 ```
 
 ------------------------------------------------------------------------
@@ -440,7 +499,7 @@ getwd()  # "get working directory"
 This will show you the full path to where R is currently looking for files. If you need to change your working directory, you can use:
 
 ```{r}
-# setwd("path/to/your/project")  # "set working directory"
+setwd("C:/Users/kylie/Desktop/UCSB/Classes/jumpstart26")  # "set working directory"
 # But we'll use the here package instead for better practice!
 ```
 
@@ -450,10 +509,10 @@ The `here` package solves a common problem: making sure your code works on any c
 
 ```{r}
 # Without here (problematic):
-# data <- read_csv("/Users/hannah/Documents/research/data/survey.csv")  # Won't work on other computers!
+#data <- read_csv("/Users/hannah/Documents/research/data/survey.csv")  # Won't work on other computers!
 
 # With here (better):
-# data <- read_csv(here("data", "survey.csv"))  # Works anywhere!
+#data <- read_csv(here("data", "survey.csv"))  # Works anywhere!
 ```
 
 The `here` package automatically finds your project root and builds paths from there.
@@ -471,7 +530,9 @@ The `read_csv()` function (from tidyverse) is our go-to for importing data:
 ```{r}
 # Read in communication research data
 comm_survey <- read_csv(here("data", "communication_survey.csv"))
-
+comm_survey <- data
+comm_survey <- read_csv("data/communication_survey.csv")
+#C:\Users\kylie\Desktop\R_working_dir
 # Pro tip: Use tab completion!
 # Type read_csv(here("data", then press TAB to see available files
 ```
@@ -510,14 +571,14 @@ media_data$trust_score     # Use $ to access individual columns
 
 R packages are collections of functions created by other researchers and developers. Think of them as specialized toolkits:
 
--   **Base R** = basic toolkit (comes with R)
--   **Packages** = specialized tools for specific tasks
+- **Base R** = basic toolkit (comes with R)
+- **Packages** = specialized tools for specific tasks
 
 ## Installing and Loading Packages
 
 ```{r}
 # Install a package (only do this once per computer)
-# install.packages("tidyverse")
+#install.packages("tidyverse")
 
 # Load a package (do this every R session)
 library(tidyverse)
@@ -538,11 +599,11 @@ The **Tidyverse** is a collection of packages designed specifically for data sci
 
 ## Core Tidyverse Packages:
 
--   `dplyr` - data manipulation
--   `ggplot2` - data visualization\
--   `readr` - reading data files
--   `tidyr` - data tidying
--   `purrr` - functional programming
+- `dplyr` - data manipulation
+- `ggplot2` - data visualization\
+- `readr` - reading data files
+- `tidyr` - data tidying
+- `purrr` - functional programming
 
 ## Tidy Data Principles
 
@@ -572,9 +633,11 @@ result <- summarize(filter(select(media_data, age, trust_score), age > 25), mean
 
 # With pipes (much clearer!):
 result <- media_data %>%
-  select(age, trust_score) %>%
-  filter(age > 25) %>%
-  summarize(mean_trust = mean(trust_score))
+  select(age, trust_score) %>%             #select
+  filter(age > 30) %>%                     #filter
+  summarize(mean_trust = mean(trust_score))#mean
+
+print(result)
 ```
 
 ## select(): Choose Your Variables
@@ -590,9 +653,17 @@ core_variables <- media_data %>%
 demographic_vars <- media_data %>%
   select(participant_id:gender)  # All columns from participant_id to gender
 
+print(demographic_vars)
 # Note: You can also remove unwanted variables with a minus sign
 # clean_data <- media_data %>%
 #   select(-age)  # This would remove these columns
+# 
+# 
+# 
+# clean_data <- media_data %>%
+#   select(-c(participant_id:gender))  # This would remove these columns
+
+#print(clean_data)
 ```
 
 ## filter(): Choose Your Observations
@@ -656,6 +727,7 @@ overall_stats <- media_data %>%
     median_age = median(age, na.rm = TRUE),
     total_participants = n()
   )
+print(overall_stats)
 
 # Statistics by group
 trust_by_source <- media_data %>%
@@ -676,12 +748,14 @@ Use `arrange()` to sort rows:
 
 ```{r}
 # Sort by trust score (lowest to highest)
-sorted_data <- media_data %>%
+sorted_data <- media_data %>%  
   arrange(trust_score)
 
+head(sorted_data)
 # Sort by trust score (highest to lowest)  
 sorted_desc <- media_data %>%
   arrange(desc(trust_score))
+head(sorted_desc)
 
 # Sort by multiple variables
 multi_sort <- media_data %>%
@@ -702,11 +776,13 @@ Read in the social media dataset and explore its structure:
 
 ```{r}
 # Read in the dataset
-# social_media_data <- read_csv(here("data", "social_media_engagement.csv"))
+social_media_data <- read_csv(here("data", "social_media_engagement.csv"))
 
 # Explore the data structure
 # Your code here: use glimpse(), summary(), and head()
-
+glimpse(social_media_data)
+summary(social_media_data)
+head(social_media_data)
 ```
 
 ## Exercise 2: Variable Selection
@@ -716,7 +792,10 @@ Select only the variables related to platform usage and engagement:
 ```{r}
 # Select: user_id, platform, daily_hours, posts_per_week, engagement_score
 # Your code here:
+sub_sm <- social_media_data %>%
+  select(user_id, platform, daily_hours, posts_per_week, engagement_score)
 
+head(sub_sm)
 ```
 
 ## Exercise 3: Filtering Data
@@ -725,7 +804,11 @@ Filter for users who spend more than 2 hours per day on social media:
 
 ```{r}
 # Your code here:
+filter_sm <- social_media_data %>%
+  filter(daily_hours > 2)%>%
+  select(user_id, daily_hours)
 
+print(filter_sm)
 ```
 
 ## Exercise 4: Creating Categories
@@ -736,7 +819,14 @@ Create a new variable that categorizes users as "Light," "Moderate," or "Heavy" 
 # Use mutate() and case_when():
 # Light: < 1 hour, Moderate: 1-3 hours, Heavy: > 3 hours
 # Your code here:
+mutate_sm <- social_media_data %>%
+  mutate(
+   sm_group = case_when(
+      daily_hours < 1 ~ "Light",
+      daily_hours >= 1 & age < 3 ~ "Moderate", 
+      daily_hours >= 3 ~ "Heavy" ))
 
+head(mutate_sm)
 ```
 
 ## Exercise 5: Group Analysis
@@ -745,7 +835,14 @@ Calculate the average engagement score by platform:
 
 ```{r}
 # Your code here: use group_by() and summarize()
+group_sm <- social_media_data %>% 
+  group_by(platform) %>%
+  summarize(
+    mean_engagement = mean(engagement_score, na.rm = TRUE),
+    total_participants = n()
+  )
 
+print(group_sm)
 ```
 
 ## Exercise 6: Sorting and Rankings
@@ -754,17 +851,30 @@ Sort platforms by average engagement score (highest to lowest):
 
 ```{r}
 # Your code here: use arrange() with desc()
+arr_sm <- group_sm %>% 
+  arrange(mean_engagement)
+print(arr_sm)
 
+desc_sm <- group_sm %>% 
+  arrange(desc(mean_engagement)) 
+print(desc_sm)
 ```
 
 ## Exercise 7: Complex Analysis
 
-Find the top 3 platforms with highest engagement among heavy users:
+Find the top 3 platforms with highest engagement among heavy users \*:
 
 ```{r}
 # Hint: combine filter(), group_by(), summarize(), arrange(), and head()
 # Your code here:
+top3_sum <- mutate_sm %>%
+  filter(sm_group == "Heavy") %>%
+  group_by(platform) %>%
+  summarize(
+    mean_engage = mean(engagement_score))%>%
+  arrange(desc(mean_engage))
 
+head(top3_sum, 3)
 ```
 
 ## Exercise 8: Creating Summary Statistics
@@ -774,7 +884,18 @@ Create a comprehensive summary table showing platform statistics:
 ```{r}
 # Calculate: mean daily hours, mean engagement, user count, and percentage of heavy users
 # Your code here:
+sumtable <- mutate_sm %>%
+      group_by(platform) %>%
+  summarize(
+    mean_daily_hours = mean(daily_hours, na.rm = TRUE),
+    mean_engagement = mean(engagement_score, na.rm = TRUE),
+    user_count = n(),
+    heavy_user_perc = sum(sm_group == "Heavy", na.rm = TRUE) / n() * 100,
+    .groups = 'drop'
+  )
 
+sumtable
+  
 ```
 
 ------------------------------------------------------------------------
@@ -797,10 +918,10 @@ your_project/
 
 ## Code Style Guidelines:
 
--   Use meaningful variable names (`trust_score` not `x1`)
--   Comment your code extensively using # 
--   Use consistent spacing and indentation
--   Break complex operations into smaller steps
+- Use meaningful variable names (`trust_score` not `x1`)
+- Comment your code extensively using \#
+- Use consistent spacing and indentation
+- Break complex operations into smaller steps
 
 ## What You've Accomplished Today:
 
@@ -810,13 +931,13 @@ your_project/
 
 ## Coming Up:
 
--   Statistical analysis techniques\
--   Data visualization with ggplot2
+- Statistical analysis techniques\
+- Data visualization with ggplot2
 
 ## Resources for Continued Learning:
 
--   [R for Data Science](https://r4ds.hadley.nz/) - Comprehensive guide
--   [Tidyverse documentation](https://www.tidyverse.org/) - Package references
--   [RStudio Cheatsheets](https://www.rstudio.com/resources/cheatsheets/) - Quick references
+- [R for Data Science](https://r4ds.hadley.nz/) - Comprehensive guide
+- [Tidyverse documentation](https://www.tidyverse.org/) - Package references
+- [RStudio Cheatsheets](https://www.rstudio.com/resources/cheatsheets/) - Quick references
 
 **Remember:** The best way to learn R is by practicing with your own research questions and data!
